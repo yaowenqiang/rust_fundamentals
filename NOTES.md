@@ -48,6 +48,19 @@ invert all digits in the binary number and add one
 
 Arrays and Tuples are very fast at runtime but are fixed size
 
+## Strings
+
+| String             | &str                                                              |
+|--------------------|-------------------------------------------------------------------|
+| Vector of u8 data  | Vector of u8 data                                                 |
+| Mutable            | immutable                                                         |
+| Stored on the heap | Can be stored on the heap, stack or embedded in the compiled code |
+
+> A string is stored on the heap because it can grow and shrink in size. The size is not constant 
+> so it cannot be stored on the stack
+> 
+
+
 
 
 
