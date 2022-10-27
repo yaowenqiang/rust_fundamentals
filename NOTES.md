@@ -60,7 +60,8 @@ Arrays and Tuples are very fast at runtime but are fixed size
 > so it cannot be stored on the stack
 > 
 
-
+> https://doc.rust-lang.org/book/ch03-02-data-types.html
+> https://doc.rust-lang.org/book/ch04-03-slices.html
 
 
 

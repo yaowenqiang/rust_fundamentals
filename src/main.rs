@@ -31,6 +31,25 @@ fn main() {
     slogan = slogan + " every time";
     println!("{}", slogan);
 
+    // variables
+
+    let my_inferred_variable = 1_i8;
+    let _warning_variable = 0;
+
+    // casting variable data type
+
+    let float_thirty_two: f32 = 17.2;
+    let unsigned_eight : u8 = 5;
+    let cast_unsigned_eight = unsigned_eight as f32;
+    let result = float_thirty_two / cast_unsigned_eight;
+    println!("{}",result);
+
+    let number: u8 = 65;
+    let letter: char = number as char;
+    print!("{}", letter);
+
+
+
 
 
 }
