@@ -1,7 +1,4 @@
 #![allow(unused_variables)]
-
-use std::fmt::format;
-
 fn main() {
     let unused_variables :u32 = 0;
     let location : [f32;2] = [ 0.0, 0.0];
@@ -46,7 +43,29 @@ fn main() {
 
     let number: u8 = 65;
     let letter: char = number as char;
-    print!("{}", letter);
+    println!("{}", letter);
+    let number2 : u128 = 65;
+    // let letter2 : char = number2 as char;
+    // let letter2 : char = char::from_u32(number2);
+    // println!("{}", letter2);
+
+    // Mutability
+
+    let mut changeable_variable = 65;
+
+    // scope
+
+    let scope_test = "outer scope";
+    println!("{}", scope_test);
+    {
+        // shadowing
+        let scope_test = "inner scope";
+        println!("{}", scope_test);
+    }
+    println!("{}", scope_test);
+
+
+
 
 
 
