@@ -64,5 +64,19 @@ Arrays and Tuples are very fast at runtime but are fixed size
 > https://doc.rust-lang.org/book/ch04-03-slices.html
 
 
+## Data Types and Exponents
 
+An integer can only have an integer exponent
+> i32::pow(x, y)
+
+A floating-point number can have either an integer or a floating-point exponent
+> f32::powi(x,y) or f32::powf(x,y)
+
+
+## Order of operations(PEMDAS)
+
+() | parentheses
+** | exponents
+* / | Multiplication & Division
++- | Addition and Subtraction
 

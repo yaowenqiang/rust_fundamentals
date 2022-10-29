@@ -64,7 +64,22 @@ fn main() {
     }
     println!("{}", scope_test);
 
+    // operators
 
+    let modules = 18 % 7;
+    println!("{}", modules);
+
+    let squared = i32::pow(8, 2);
+    let float_integer = f32::powi(6.5,3);
+    let float_float = f32::powf(6.5,3.14);
+
+    println!("Integer: {}", squared);
+    println!("float to int: {}", float_integer);
+    println!("float to float: {}", float_float);
+
+    let order_ops = 8 + 4*2 - (12/3+7)+4;
+    println!("{}", order_ops);
+    
 
 
 
