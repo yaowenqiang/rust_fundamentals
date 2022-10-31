@@ -1,4 +1,5 @@
 #![allow(unused_variables)]
+#![feature(exclusive_range_pattern)]
 
 enum NavigationAids {
     // NOB = 7,
@@ -132,7 +133,7 @@ fn main() {
     println!("VORDME: \t{}", NavigationAids::VORDME as u8);
 
 
-    let ndb_val = NavigationAids::NDB(385);
+    let ndb_val = NavigationAids::NOB(385);
     let vor_dqn = NavigationAids::VOR(String::from("DQN"), 114.5);
     let vor_dme_sgh = NavigationAids::VORDME(String::from("SGH"), 113.2);
     let fix_tarry = NavigationAids::FIX {
@@ -145,6 +146,39 @@ fn main() {
     print_nav_aid(&vor_dqn);
     print_nav_aid(&vor_dme_sgh);
     print_nav_aid(&fix_tarry);
+
+
+    let ndb_freq:u16 = 384;
+    match ndb_freq {
+        // range match
+        200..500 => {
+            println!("NDB frequency is valid")
+        }
+        _ => {
+            println!("NDB frequency is invalid")
+        }
+    }
+
+    let ndb_freq:u16 = 384;
+    match ndb_freq {
+        ndb_freq if ndb_freq >= 200 && ndb_freq <= 500 => {
+            println!("NDB frequency is valid")
+        }
+        _ => {
+            println!("NDB frequency is invalid")
+        }
+    }
+
+    // Options
+
+    let phrase:String = String::from("Duck Airlines");
+    let letter = phrase.chars().nth(5);
+
+    let value = match letter {
+        Some(character)  => character.to_string(),
+        None => String::from("No value")
+    };
+    println!("{}", value);
 
 }
 
@@ -159,7 +193,7 @@ fn print_nav_aid(navaid: &NavigationAids) {
         NavigationAids::VORDME(id, freq) => {
             println!("VORDME identifier is  {} and it's frequency is {} kilohertz", id, freq);
         }
-        NavigationAids::FIX(name, latitude, longitude) => {
+        NavigationAids::FIX{name, latitude, longitude} => {
             println!("FIX {} is at {} latitude and {} longitude", name, latitude, longitude);
         }
     }
