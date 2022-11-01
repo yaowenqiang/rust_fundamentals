@@ -180,6 +180,41 @@ fn main() {
     };
     println!("{}", value);
 
+    // let
+    // OuterAttribute* let PatternNoTopAlt(: Type)?(=Expression)?;
+    // https://doc.rust-lang.org/reference/statements.html#let-statements
+    // https://doc.rust-lang.org/reference/expressions/if-expr.html
+    let animal = "Duck";
+    if let animal = "Duck" {
+        print!("Quack");
+    }
+
+    if  animal == "Cat" {
+        print!("Quack");
+    }
+
+
+    let dish = ("Ham", "Eggs");
+    if let ("Bacon", b) = dish {
+        println!("Bacon is served with {}", b);
+    } else {
+        // This block is evaluated instead.
+        println!("No bacon will be served");
+    }
+
+// this body will execute
+    if let ("Ham", b) = dish {
+        println!("Ham is served with {}", b);
+    }
+
+    if let (c, d) = dish {
+        println!("{}", format!("c:{}, d:{}", c,d));
+    }
+
+    if let _ = 5 {
+        println!("Irrefutable patterns are always true");
+    }
+
 }
 
 fn print_nav_aid(navaid: &NavigationAids) {
