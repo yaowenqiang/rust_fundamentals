@@ -215,6 +215,34 @@ fn main() {
         println!("Irrefutable patterns are always true");
     }
 
+    // loop
+
+    let mut counter = 0;
+    loop {
+        counter += 1;
+        println!("{}", counter);
+        if counter == 5 {
+            continue;
+        }
+        if counter == 10 {
+            break;
+        }
+    }
+
+    for index in 1 .. 10 {
+        println!("{}", index);
+    }
+
+    for index in 1 ..=10 {
+        println!("{}", index);
+    }
+
+    // https://www.merriam-webster.com/dictionary/iterate
+
+    let arrs = [10,20,30];
+    for i in arrs.iter() {
+        println!("{}", i);
+    }
 }
 
 fn print_nav_aid(navaid: &NavigationAids) {
