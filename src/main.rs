@@ -243,6 +243,20 @@ fn main() {
     for i in arrs.iter() {
         println!("{}", i);
     }
+
+    // ownership
+    let mut original = String::from("original value");
+    println!("\noriginal: \n\"{}\"\n", original);
+    {
+
+        // let mut next = original;
+        let  next = &mut original;
+        println!("{}", next); // works ,?
+        next.push('n');
+        *next = String::from("next value"); // * means dereference
+        println!("{}", next);
+    }
+    println!("{}", original);
 }
 
 fn print_nav_aid(navaid: &NavigationAids) {
