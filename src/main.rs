@@ -257,8 +257,50 @@ fn main() {
         println!("{}", next);
     }
     println!("{}", original);
+
+    // lifetimes
+
+    let outer_scope;
+    {
+        let inner_scope = 5;
+        outer_scope = &inner_scope;
+    }
+    // println!("{}", outer_scope);
+
+    // let returned_ref = return_bad_ref();
+    // println!("{}", returned_ref);
+
+    let referenced_int = 6;
+    let returned_value = return_one_parameter(&referenced_int);
+    println!("{}", returned_value);
+
+    let value_one = 24;
+    let value_two = 77;
+    let value = explicit_lifetime(&value_one, &value_two);
+    println!("{}", value);
+
+
+}
+fn explicit_lifetime<'a>(p1: &'a i32, p2: &'a i32) -> &'a i32 {
+    if p1 < p2 {
+        p1
+    } else {
+        p2
+    }
 }
 
+// fn lifetime_syntax<'a, 'b>(p1: &'a i32, p2: &i32, p3: &'b f64) {
+//
+// }
+
+fn return_one_parameter(value: &i32) -> &i32 {
+    value
+}
+
+// fn return_bad_ref() -> &i32 {
+//     let value = 5;
+//     &value
+// }
 fn print_nav_aid(navaid: &NavigationAids) {
     match navaid {
         NavigationAids::NOB(khz) => {
