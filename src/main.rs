@@ -279,7 +279,27 @@ fn main() {
     let value = explicit_lifetime(&value_one, &value_two);
     println!("{}", value);
 
+    let greater = return_greater(10, 5);
+    println!("{}", greater);
 
+    let mut original = String::from("original value");
+    println!("\n outer scope original: \n\"{}\"", original);
+    {
+        print_original(&original);
+        change_original(&mut original);
+        println!("inner scope original: \t \"{}\"", original);
+    }
+
+}
+
+fn print_original(original: &String) {
+    println!("fn print_original: \t\"{}\"", original);
+}
+fn change_original(original: &mut String) {
+    let next = original;
+    *next = String::from("next value");
+    println!("fn change_original next: \t\"{}\"", next);
+    // println!("fn change_original original: \t\"{}\"", original);
 }
 fn explicit_lifetime<'a>(p1: &'a i32, p2: &'a i32) -> &'a i32 {
     if p1 < p2 {
@@ -292,6 +312,16 @@ fn explicit_lifetime<'a>(p1: &'a i32, p2: &'a i32) -> &'a i32 {
 // fn lifetime_syntax<'a, 'b>(p1: &'a i32, p2: &i32, p3: &'b f64) {
 //
 // }
+// functions
+fn return_greater(first: u8, second: u8) -> u8 {
+    if first > second {
+        first
+    } else {
+        second
+    }
+}
+
+
 
 fn return_one_parameter(value: &i32) -> &i32 {
     value
