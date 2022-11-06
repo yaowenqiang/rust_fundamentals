@@ -1,6 +1,8 @@
 #![allow(unused_variables)]
 #![feature(exclusive_range_pattern)]
 
+use std::fmt::{format, write};
+
 enum NavigationAids {
     // NOB = 7,
     // // VOR = 6,
@@ -289,6 +291,17 @@ fn main() {
         change_original(&mut original);
         println!("inner scope original: \t \"{}\"", original);
     }
+    // closure
+    let name = "Duck AirLines";
+    let write_message = |slogan: String| -> String {
+        println!("Hey, This is the closure.");
+        println!("{}, {}", name, slogan);
+        format!("{}, {}", name, slogan)
+    };
+
+    let phrase = write_message(String::from("We hit the ground every time."));
+    println!("{}", phrase);
+
 
 }
 
