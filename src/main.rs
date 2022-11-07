@@ -1,6 +1,10 @@
 #![allow(unused_variables)]
 #![feature(exclusive_range_pattern)]
+#![feature(core_panic)]
 
+extern crate core;
+
+use core::panicking::panic;
 use std::fmt::{format, write};
 
 enum NavigationAids {
@@ -303,6 +307,17 @@ fn main() {
     println!("{}", phrase);
 
 
+    //exceptions
+    //export RUST_BACKTRACE=full
+    panic!("Sorry ,i panicked.");
+    panic_vector();
+
+
+}
+
+fn panic_vector() {
+    let vector = vec![1,2,3,4,5];
+    println!("{}", vector[10]);
 }
 
 fn print_original(original: &String) {
