@@ -7,7 +7,7 @@ extern crate core;
 use core::panicking::panic;
 use std::fmt::{format, write};
 use std::fs::File;
-use std::io::ErrorKind;
+use std::io::{ErrorKind, Read, Error};
 
 enum NavigationAids {
     // NOB = 7,
@@ -339,9 +339,25 @@ fn main() {
         }
     }
 
+    let file_data = read_file(filename);
+    match file_data {
+        Ok(data) => {
+            println!("ok: {}", data);
+        }
+        Err(_) => {}
+    }
 
 
 
+
+
+}
+
+fn read_file(filename: &str) -> Result<String, Error> {
+    let mut file_handle = File::open(filename)?;
+    let mut file_data = String::new();
+    file_handle.read_to_string(&mut file_data)?;
+    Ok(file_data)
 }
 
 fn panic_vector() {
