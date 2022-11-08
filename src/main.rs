@@ -6,6 +6,8 @@ extern crate core;
 
 use core::panicking::panic;
 use std::fmt::{format, write};
+use std::fs::File;
+use std::io::ErrorKind;
 
 enum NavigationAids {
     // NOB = 7,
@@ -309,8 +311,35 @@ fn main() {
 
     //exceptions
     //export RUST_BACKTRACE=full
-    panic!("Sorry ,i panicked.");
-    panic_vector();
+    // panic!("Sorry ,i panicked.");
+    // panic_vector();
+
+    let filename = "customer.json";
+    match  File::open(filename) {
+        Ok(file) => {
+            println!("{:#?}", file);
+        }
+        Err(error) => {
+            // println!("{:#?}", error);
+            match error.kind() {
+                ErrorKind::NotFound => {
+                    match File::create(filename) {
+                        Ok(file) => {
+                            println!("file created!");
+                        }
+                        Err(error) => {
+                            println!("{:#?}", error);
+                        }
+                    }
+                }
+                _ => {
+                    println!("{:#?}", error);
+                }
+            }
+        }
+    }
+
+
 
 
 }
