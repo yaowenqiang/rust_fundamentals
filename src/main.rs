@@ -8,6 +8,7 @@ use core::panicking::panic;
 use std::fmt::{format, write};
 use std::fs::File;
 use std::io::{ErrorKind, Read, Error};
+use std::str::ParseBoolError;
 
 enum NavigationAids {
     // NOB = 7,
@@ -20,6 +21,60 @@ enum NavigationAids {
     VOR(String, f32),
     VORDME(String, f32),
     FIX{name: String, latitude: f32, longitude: f32}
+}
+
+struct Waypoint {
+    name: String,
+    latitude: f32,
+    longitude: f32,
+}
+
+struct Segment {
+    start: Waypoint,
+    end: Waypoint
+}
+
+struct Boeing {
+    required_crew: u8,
+    range: u16
+}
+
+struct Airbus {
+    required_crew: u8,
+    range: u16
+}
+
+impl Flight for Boeing {
+    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> boolean {
+        if (available_crew >= required_crew) && (range + 150 > distance) {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+impl Flight for Airbus {
+    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> boolean {
+        if (available_crew >= required_crew) && (range + 280 > distance) {
+            true
+        } else {
+            false
+        }
+    }
+}
+
+trait Flight {
+    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> boolean;
+}
+
+impl Segment {
+    fn new(start: Waypoint, end: Waypoint) -> Self {
+        Self {
+            start,
+            end
+        }
+    }
 }
 
 fn main() {
@@ -347,6 +402,22 @@ fn main() {
         Err(_) => {}
     }
 
+
+    // data structures
+
+    let kcle = Waypoint {
+        name: "KCLE".to_string(),
+        latitude: 41.1075,
+        longitude: -81.85111
+    };
+
+    let kslc = Waypoint{
+        name: "KSLC".to_string(),
+        ..kcle
+    };
+
+
+    let kcle_kslc = Segment::new(kcle,kslc);
 
 
 
