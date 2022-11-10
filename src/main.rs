@@ -45,7 +45,7 @@ struct Airbus {
 }
 
 impl Flight for Boeing {
-    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> boolean {
+    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> bool {
         if (available_crew >= required_crew) && (range + 150 > distance) {
             true
         } else {
@@ -55,7 +55,7 @@ impl Flight for Boeing {
 }
 
 impl Flight for Airbus {
-    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> boolean {
+    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> bool {
         if (available_crew >= required_crew) && (range + 280 > distance) {
             true
         } else {
@@ -65,7 +65,7 @@ impl Flight for Airbus {
 }
 
 trait Flight {
-    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> boolean;
+    fn is_legal(&self, required_crew: u8, available_crew: u8, range: u16, distance: u16) -> bool;
 }
 
 impl Segment {
@@ -419,6 +419,30 @@ fn main() {
 
     let kcle_kslc = Segment::new(kcle,kslc);
 
+    // collections
+
+    let mut flight :Vec<&str> = Vec::new();
+    let vec_macro = vec![1,2,3];
+    flight.push("new flight");
+
+    for f in flight.iter() {
+        println!("{}", f);
+    }
+
+    println!("{}", flight[0]);
+    // let f = flight.get(0);
+    let f = flight.get(1);
+    match f {
+        Some(str) => println!("{}", str),
+        _ => println!("empty")
+    }
+
+    if let Some(flight_value) = flight.get(0) {
+        println!("{}", flight_value);
+    }
+
+    flight.insert(1,"a c919 flight");
+    flight.remove(1);
 
 
 
