@@ -5,6 +5,7 @@
 extern crate core;
 
 use core::panicking::panic;
+use std::collections::VecDeque;
 use std::fmt::{format, write};
 use std::fs::File;
 use std::io::{ErrorKind, Read, Error};
@@ -445,7 +446,28 @@ fn main() {
     flight.remove(1);
 
 
+    // VecDequeue (Vector Double Ended Queue)
+    // can add and remove from the front or the back
+    // cannot sort elements of a VecDequeue
 
+    let mut flights:VecDeque<&str> = VecDeque::new();
+    flights.push_front("front flight");
+    flights.push_back("back flight");
+    flights.push_front("front flight again");
+    flights.push_front("front flight again and again");
+    flights.push_back("back flight again");
+    flights.push_back("back flight again and again");
+
+    for f in flights.iter() {
+        println!("{}", f);
+    }
+    println!("{}", flights.len());
+
+    println!("{}", flights.contains(&"again"));
+    flights.clear();
+
+
+    // iter_mut
 }
 
 fn read_file(filename: &str) -> Result<String, Error> {
