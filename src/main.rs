@@ -5,7 +5,7 @@
 extern crate core;
 
 use core::panicking::panic;
-use std::collections::VecDeque;
+use std::collections::{HashMap, VecDeque};
 use std::fmt::{format, write};
 use std::fs::File;
 use std::io::{ErrorKind, Read, Error};
@@ -468,6 +468,32 @@ fn main() {
 
 
     // iter_mut
+
+
+    // Sequence vs Map Collections
+
+    // sequence collections | Map Collections
+    // Store entries in a list sequentially | Store entries as key value pairs
+    // Has a single generic data type for entries | Has two generic data types, One for the keys and one for the value
+
+    // Hash Map and Btree Map
+
+    // Default Rust collections do not have key collision checking
+
+    let mut flight_maps  = HashMap::new();
+    flight_maps.insert("DA918", ("11:12","Dorando"));
+    flight_maps.insert("DA418", ("12:05","Salt Lake City"));
+    let flight_number = "DA918";
+    let option = flight_maps.get(flight_number);
+    let (time, destination) = option.unwrap();
+    println!("{} - {}", time, destination);
+
+
+    if !flight_maps.contains_key(flight_number) {
+        flight_maps.insert(flight_number, ("12:00", "Puerto Pico"));
+    } else {
+        println!("Flight {} is already entered!", flight_number);
+    }
 }
 
 fn read_file(filename: &str) -> Result<String, Error> {
