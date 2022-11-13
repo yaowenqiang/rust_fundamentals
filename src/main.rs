@@ -5,7 +5,7 @@
 extern crate core;
 
 use core::panicking::panic;
-use std::collections::{HashMap, VecDeque};
+use std::collections::{HashMap, HashSet, VecDeque};
 use std::fmt::{format, write};
 use std::fs::File;
 use std::io::{ErrorKind, Read, Error};
@@ -494,6 +494,22 @@ fn main() {
     } else {
         println!("Flight {} is already entered!", flight_number);
     }
+
+    // Sets
+
+   let mut flights_hash_set = HashSet::new();
+   flights_hash_set.insert(("DA90", "11:12", "Drlando"));
+   flights_hash_set.insert(("DA428", "12:15", "London"));
+    flights_hash_set.insert(("DA90", "11:12", "Drlando"));
+    // set does not have orders
+
+    for f in flights_hash_set.iter() {
+        println!("{:?}", f);
+    }
+
+
+
+
 }
 
 fn read_file(filename: &str) -> Result<String, Error> {
