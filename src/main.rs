@@ -507,11 +507,22 @@ fn main() {
         println!("{:?}", f);
     }
 
+    // generics
+    let number_list = vec![1,2,3];
+    println!("{}", largest(&number_list));
+    }
 
+fn largest<T>(list: &[T]) -> &T {
+    let mut largest = &list[0];
 
+    for item in list {
+        if item > largest {
+            largest = item;
+        }
+    }
 
+    largest
 }
-
 fn read_file(filename: &str) -> Result<String, Error> {
     let mut file_handle = File::open(filename)?;
     let mut file_data = String::new();
