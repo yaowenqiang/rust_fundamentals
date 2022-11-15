@@ -6,7 +6,7 @@ extern crate core;
 
 use core::panicking::panic;
 use std::collections::{HashMap, HashSet, VecDeque};
-use std::fmt::{format, write};
+use std::fmt::{Display, format, write};
 use std::fs::File;
 use std::io::{ErrorKind, Read, Error};
 use std::str::ParseBoolError;
@@ -77,6 +77,13 @@ impl Segment {
         }
     }
 }
+
+#[derive(Debug)]
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
 
 fn main() {
     let unused_variables: u32 = 0;
@@ -510,7 +517,14 @@ fn main() {
     // generics
     let number_list = vec![1,2,3];
     println!("{}", largest(&number_list));
-    }
+
+    let integer = Point { x: 5, y: 10 };
+    let float = Point { x: 1.0, y: 4.0 };
+    let tuple = Point { x: (1,2), y: (3,4) };
+    println!("{:#?}", integer);
+    println!("{:#?}", float);
+    println!("{:#?}", tuple);
+}
 
 fn largest<T>(list: &[T]) -> &T {
     let mut largest = &list[0];
@@ -523,6 +537,7 @@ fn largest<T>(list: &[T]) -> &T {
 
     largest
 }
+
 fn read_file(filename: &str) -> Result<String, Error> {
     let mut file_handle = File::open(filename)?;
     let mut file_data = String::new();
