@@ -84,6 +84,12 @@ struct Point<T> {
     y: T,
 }
 
+#[derive(Debug)]
+struct Point2<T,U> {
+    x: T,
+    y: U,
+}
+
 
 fn main() {
     let unused_variables: u32 = 0;
@@ -524,9 +530,15 @@ fn main() {
     println!("{:#?}", integer);
     println!("{:#?}", float);
     println!("{:#?}", tuple);
+    let integer2 = Point2 { x: 5, y: 10.1 };
+    let float2 = Point2 { x: 1.0, y: 4 };
+    let tuple2 = Point2 { x: (1,2), y: 4.5 };
+    println!("{:#?}", integer2);
+    println!("{:#?}", float2);
+    println!("{:#?}", tuple2);
 }
 
-fn largest<T>(list: &[T]) -> &T {
+fn largest<T :std::cmp::PartialOrd>(list: &[T]) -> &T {
     let mut largest = &list[0];
 
     for item in list {
