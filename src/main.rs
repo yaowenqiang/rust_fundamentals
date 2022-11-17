@@ -530,12 +530,25 @@ fn main() {
     println!("{:#?}", integer);
     println!("{:#?}", float);
     println!("{:#?}", tuple);
+    println!("{:#?}", tuple.x());
     let integer2 = Point2 { x: 5, y: 10.1 };
     let float2 = Point2 { x: 1.0, y: 4 };
     let tuple2 = Point2 { x: (1,2), y: 4.5 };
     println!("{:#?}", integer2);
     println!("{:#?}", float2);
     println!("{:#?}", tuple2);
+}
+
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
+impl Point<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        (&self.x.powf(2.0) + self.y.powf(2.0)).sqrt()
+    }
 }
 
 fn largest<T :std::cmp::PartialOrd>(list: &[T]) -> &T {
