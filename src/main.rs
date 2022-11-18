@@ -90,6 +90,15 @@ struct Point2<T,U> {
     y: U,
 }
 
+impl <T, U> Point2<T,U> {
+    fn mixup<T1,U1>(self, other: Point2<T1,U1>) -> Point2<T,U1> {
+        Point2{
+            x: self.x,
+            y: other.y
+        }
+    }
+}
+
 
 fn main() {
     let unused_variables: u32 = 0;
@@ -537,6 +546,12 @@ fn main() {
     println!("{:#?}", integer2);
     println!("{:#?}", float2);
     println!("{:#?}", tuple2);
+
+    let p1 = Point2{x: 5, y: 10.4};
+    let p2 = Point2{x: "Hello", y:'c'};
+    let p3 = p1.mixup(p2);
+    print!("p3.x = {}, p3.y = {}", p3.x, p3.y);
+
 }
 
 impl<T> Point<T> {
