@@ -99,6 +99,19 @@ impl <T, U> Point2<T,U> {
     }
 }
 
+#[derive(Debug)]
+enum Option_i32 {
+    Some(i32),
+    None
+}
+
+#[derive(Debug)]
+enum Option_f64 {
+    Some(f64),
+    None
+}
+
+
 
 fn main() {
     let unused_variables: u32 = 0;
@@ -550,7 +563,12 @@ fn main() {
     let p1 = Point2{x: 5, y: 10.4};
     let p2 = Point2{x: "Hello", y:'c'};
     let p3 = p1.mixup(p2);
-    print!("p3.x = {}, p3.y = {}", p3.x, p3.y);
+    println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
+
+    let integer_i32 = Option_i32::Some(3);
+    let float_f64 = Option_f64::Some(5.0);
+    println!("{:#?}", integer_i32);
+    println!("{:#?}", float_f64);
 
 }
 
