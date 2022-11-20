@@ -111,7 +111,22 @@ enum Option_f64 {
     None
 }
 
+pub trait Summary {
+    fn summarize(&self) -> String;
+}
 
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summary for NewsArticle {
+    fn summarize(&self) -> String {
+        format!("{}, by {}, ({})",self.headline, self.author, self.location)
+    }
+}
 
 fn main() {
     let unused_variables: u32 = 0;
@@ -569,6 +584,17 @@ fn main() {
     let float_f64 = Option_f64::Some(5.0);
     println!("{:#?}", integer_i32);
     println!("{:#?}", float_f64);
+
+
+    //traits
+
+    let news = NewsArticle{
+        headline:String::from("Today WC begin."),
+        location:String::from("Qatar"),
+        author:String::from("wbb"),
+        content:String::from("FIFA WC 2022")
+    };
+    println!("{}", news.summarize());
 
 }
 
