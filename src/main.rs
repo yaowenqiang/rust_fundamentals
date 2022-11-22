@@ -9,6 +9,7 @@ use std::collections::{HashMap, HashSet, VecDeque};
 use std::fmt::{Display, format, write};
 use std::fs::File;
 use std::io::{ErrorKind, Read, Error};
+use std::iter::Sum;
 use std::str::ParseBoolError;
 
 enum NavigationAids {
@@ -136,6 +137,14 @@ impl Summary for NewsArticle {
     fn summarize_author(&self) -> String {
         format!("{}",self.author)
     }
+}
+
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+pub fn notify1<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
 }
 
 fn main() {
@@ -605,6 +614,8 @@ fn main() {
         content:String::from("FIFA WC 2022")
     };
     println!("{}", news.summarize());
+    notify(&news);
+    notify1(&news);
 
 }
 
