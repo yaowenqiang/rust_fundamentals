@@ -6,7 +6,7 @@ extern crate core;
 
 use core::panicking::panic;
 use std::collections::{HashMap, HashSet, VecDeque};
-use std::fmt::{Display, format, write};
+use std::fmt::{Debug, Display, format, write};
 use std::fs::File;
 use std::io::{ErrorKind, Read, Error};
 use std::iter::Sum;
@@ -145,6 +145,22 @@ pub fn notify(item: &impl Summary) {
 
 pub fn notify1<T: Summary>(item: &T) {
     println!("Breaking news! {}", item.summarize());
+}
+
+pub fn notify2(item: &(impl Summary + Display)) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+pub fn notify3<T: Summary + Display>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+pub fn notify4<T, U>(t : &T, u :U) -> String
+where
+    T: Display + Clone,
+    U: Clone + Debug + Display,
+{
+    format!("Breaking news! {}, {}", t, u)
 }
 
 fn main() {
