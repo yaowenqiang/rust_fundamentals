@@ -129,6 +129,16 @@ pub struct NewsArticle {
     pub content: String,
 }
 
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+}
+impl Summary for Tweet {
+    fn summarize_author(&self) -> String {
+        format!("{}",self.username)
+    }
+}
+
 impl Summary for NewsArticle {
     // fn summarize(&self) -> String {
         // format!("{}, by {}, ({})",self.headline, self.author, self.location)
@@ -162,6 +172,32 @@ where
 {
     format!("Breaking news! {}, {}", t, u)
 }
+
+pub fn return_summarizable() -> impl Summary {
+    NewsArticle{
+        headline:String::from("Today WC begin."),
+        location:String::from("Qatar"),
+        author:String::from("wbb"),
+        content:String::from("FIFA WC 2022")
+    }
+}
+
+// this function  won't work, must return the same type
+// pub fn return_multitype_summarizable(switch: bool) -> impl Summary {
+//     if switch {
+//         NewsArticle{
+//             headline:String::from("Today WC begin."),
+//             location:String::from("Qatar"),
+//             author:String::from("wbb"),
+//             content:String::from("FIFA WC 2022")
+//         }
+//     } else {
+//         Tweet{
+//             username: String::from("jack"),
+//             content: String::from("very good content")
+//         }
+//     }
+// }
 
 fn main() {
     let unused_variables: u32 = 0;
