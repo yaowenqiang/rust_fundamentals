@@ -85,6 +85,22 @@ struct Point<T> {
     y: T,
 }
 
+impl<T> Point<T> {
+    fn new(x:T, y:T) -> Self {
+        Self {x, y}
+    }
+}
+
+impl<T: Display + PartialOrd>Point<T> {
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The Largest number is x = {}", self.x);
+        } else {
+            println!("The Largest number is y = {}", self.y);
+        }
+    }
+}
+
 #[derive(Debug)]
 struct Point2<T,U> {
     x: T,
