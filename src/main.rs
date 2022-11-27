@@ -700,6 +700,20 @@ fn main() {
 
     let result = longest(string1.as_str(), string2);
     println!("The longest string is {}", result);
+    {
+        let string2 = String::from("xyz");
+        let result = longest(string1.as_str(), string2.as_str());
+        println!("The Longest string is {}", result);
+    }
+
+    let result2;
+    {
+        let string2 = String::from("xyz");
+         result2 = longest(string1.as_str(), string2.as_str());
+    }
+    println!("The Longest string is {}", result2);
+
+
 
 }
 
