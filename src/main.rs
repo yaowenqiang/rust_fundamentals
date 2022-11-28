@@ -215,6 +215,14 @@ pub fn return_summarizable() -> impl Summary {
 //     }
 // }
 
+#[derive(Debug)]
+struct ImportantExcept<'a> {
+    part: &'a str,
+}
+// struct ImportantExcept {
+//     part: &str,
+// }
+
 fn main() {
     let unused_variables: u32 = 0;
     let location: [f32; 2] = [0.0, 0.0];
@@ -706,14 +714,21 @@ fn main() {
         println!("The Longest string is {}", result);
     }
 
-    let result2;
-    {
-        let string2 = String::from("xyz");
-         result2 = longest(string1.as_str(), string2.as_str());
-    }
-    println!("The Longest string is {}", result2);
+    // let result2;
+    // {
+    //     let string2 = String::from("xyz");
+    //      result2 = longest(string1.as_str(), string2.as_str());
+    // }
+    // println!("The Longest string is {}", result2);
 
 
+    let movel = String::from("call me Ishmael, Some years ago...");
+    let first_sentence = movel.split('.').next().expect("Could not find a '.'");
+    let i = ImportantExcept {
+        part: first_sentence,
+    };
+
+    println!("{:#?}", i);
 
 }
 
@@ -725,6 +740,9 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     }
 }
 
+fn longest2<'a>(x: &'a str, y: &str) -> &'a str {
+    x
+}
 impl<T> Point<T> {
     fn x(&self) -> &T {
         &self.x
