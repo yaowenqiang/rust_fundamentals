@@ -740,6 +740,16 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     }
 }
 
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+    &s[..]
+}
+
 fn longest2<'a>(x: &'a str, y: &str) -> &'a str {
     x
 }
