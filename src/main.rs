@@ -729,6 +729,18 @@ fn main() {
     };
 
     println!("{:#?}", i);
+    {
+        let x = "abc";
+        {
+            let y = "abc";
+            {
+                let z = "def";
+                {
+                    println!("{:#?}", longest3(x ,y));
+                }
+            }
+        }
+    }
 
 }
 
@@ -752,6 +764,9 @@ fn first_word(s: &str) -> &str {
 
 fn longest2<'a>(x: &'a str, y: &str) -> &'a str {
     x
+}
+fn longest3<'a, 'b>(x: &'a str, y: &'b str) -> (&'a str, &'b str) {
+    (x, y)
 }
 impl<T> Point<T> {
     fn x(&self) -> &T {
