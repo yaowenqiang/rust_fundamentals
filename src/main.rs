@@ -219,6 +219,16 @@ pub fn return_summarizable() -> impl Summary {
 struct ImportantExcept<'a> {
     part: &'a str,
 }
+
+impl<'a> ImportantExcept<'a> {
+    fn level(&self) -> i32 {
+        3
+    }
+    fn announce_and_return_part(&self, announcement: &str) -> &str {
+        println!("Attention please : {}", announcement);
+        self.part
+    }
+}
 // struct ImportantExcept {
 //     part: &str,
 // }
