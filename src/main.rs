@@ -755,6 +755,19 @@ fn main() {
     let s: &'static str = "I have a static lifetime.";
 
 
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    let team_name = String::from("Yellow");
+    let score = scores.get(&team_name).copied().unwrap_or(0);
+    println!("score of {} team is : {}", team_name, score);
+
+    for (key, value) in &scores {
+        println!("{}: {}", key, value);
+    }
+
+
 
 }
 
