@@ -767,6 +767,14 @@ fn main() {
         println!("{}: {}", key, value);
     }
 
+    let field_name = String::from("Favorite color");
+    let field_value = String::from("Blue");
+    let mut map = HashMap::new();
+    // map.insert(field_name, field_value);
+    map.insert(&field_name, &field_value);
+
+    println!("field name is {}", field_name);
+
 
 
 }
