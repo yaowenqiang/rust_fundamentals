@@ -775,6 +775,22 @@ fn main() {
 
     println!("field name is {}", field_name);
 
+    // map.insert(&String::from("age"),&String::from("10") );
+    // map.insert(&String::from("age"),&String::from("12") );
+
+    let age_string = String::from("age");
+    let age_value = String::from("10");
+    // map.insert(&age_string,&String::from("10") );
+    // map.insert(&age_string,&String::from("12") );
+
+    map.insert(&age_string,&age_value );
+    map.insert(&age_string,&age_value );
+    map.insert(&age_string,&age_value );
+    map.insert(&age_string,&age_value );
+    map.insert(&age_string,&age_value );
+    // map.insert(&age_string,&String::from("12") );
+    println!("{:?}",map);
+
 
 
 }
