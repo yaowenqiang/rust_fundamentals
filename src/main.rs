@@ -792,6 +792,16 @@ fn main() {
     println!("{:?}",map);
 
 
+    let text = "\'@\"Hello world wonderful world";
+    let mut word_map = HashMap::new();
+    for word in text.split_whitespace() {
+        let  count = word_map.entry(word).or_insert(0);
+        *count += 1;
+    }
+
+    println!("{:?}", word_map);
+
+
 
 }
 
