@@ -802,6 +802,16 @@ fn main() {
     println!("{:?}", word_map);
 
 
+    let data = "initial contents";
+    let mut s = data.to_string();
+    s.push_str(" append content");
+
+    let mut s1 = String::from("s1");
+    let s2 = "bar";
+    s1.push_str(s2);
+    println!("s2 is {}", s2);
+
+
 
 }
 
