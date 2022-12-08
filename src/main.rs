@@ -812,6 +812,15 @@ fn main() {
     println!("s2 is {}", s2);
 
 
+    let ss = String::from("hello");
+    let hanzi = String::from("你好");
+    println!("{}", hanzi.len());
+    let one_hanzi = &hanzi[0..3];
+    println!("{}", one_hanzi);
+
+    // let h = ss[0];
+    // println!("{}", h);
+
 
 }
 
