@@ -822,6 +822,14 @@ fn main() {
     // println!("{}", h);
 
 
+    for c in hanzi.chars() {
+        println!("{}", c);
+    }
+
+    for b in hanzi.bytes() {
+        println!("{}", b);
+    }
+
 }
 
 fn longest_with_an_announcement<'a, T>(
