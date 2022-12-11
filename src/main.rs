@@ -4,6 +4,7 @@
 
 extern crate core;
 
+use rand;
 use core::panicking::panic;
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::fmt::{Debug, Display, format, write};
