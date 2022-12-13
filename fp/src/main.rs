@@ -1,3 +1,6 @@
+use std::time::Duration;
+use std::thread;
+
 #[derive(Debug, PartialEq, Copy, Clone)]
 enum ShirtColor {
     Red,
@@ -31,6 +34,8 @@ impl Inventory {
     }
 
 }
+
+fn add_one_v1 (x: u32) -> u32 {x + 1}
 fn main() {
     let store = Inventory {
         shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue]
@@ -47,5 +52,15 @@ fn main() {
     println!("The user with preference {:?} gets {:?}",
              user_pref2, giveaway2
     );
+
+    let expensive_closure = | num : u32 | -> u32 {
+        println!("calculating slowly...");
+        thread::sleep(Duration::from_secs(2));
+        num
+    };
+    let add_one_v2 = | x : u32| ->u32 {x + 1};
+    println!("add_one_v2: {}", add_one_v2(2));
+    let add_one_v3 = |x :i32|   {x +2};
+    let add_one_v4 = |x: i32|   x + 1;
 
 }
