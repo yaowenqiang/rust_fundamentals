@@ -63,4 +63,25 @@ fn main() {
     let add_one_v3 = |x :i32|   {x +2};
     let add_one_v4 = |x: i32|   x + 1;
 
+    let example_closure = |x| x;
+    let n = example_closure(5);
+    // let s = example_closure(String::from("hello"));
+
+   let list = vec![1,2,3] ;
+    println!("Before defining closure: {:?}", list);
+
+    let only_borrows = || println!("From closure: {:?}", list);
+
+    println!("Before calling closure: {:?}", list);
+    only_borrows();
+
+    println!("After calling closure: {:?}", list);
+
+    let mut list2 = vec![1,2,3];
+    println!("Before defining closure: {:?}", list2);
+    let mut borrows_mutably = || list2.push(4);
+    borrows_mutably();
+    println!("After calling  closure: {:?}", list2);
+
+
 }
