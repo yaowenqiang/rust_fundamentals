@@ -83,5 +83,10 @@ fn main() {
     borrows_mutably();
     println!("After calling  closure: {:?}", list2);
 
+    let list3 = vec![1,2,3];
+    thread::spawn(move || println!("From thread: {:?}", list))
+        .join()
+        .unwrap();
+
 
 }
