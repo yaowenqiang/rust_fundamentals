@@ -35,6 +35,14 @@ impl Inventory {
 
 }
 
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+
+
 fn add_one_v1 (x: u32) -> u32 {x + 1}
 fn main() {
     let store = Inventory {
@@ -87,6 +95,26 @@ fn main() {
     thread::spawn(move || println!("From thread: {:?}", list))
         .join()
         .unwrap();
+
+
+    let mut rec_list = [
+        Rectangle{width: 10, height: 1},
+        Rectangle{width: 3, height: 5},
+        Rectangle{width: 7, height: 12},
+    ];
+
+    rec_list.sort_by_key(|r| r.width);
+    println!("{:#?}", rec_list);
+
+    let mut sort_operations = vec![];
+    let value = String::from("by key called");
+    rec_list.sort_by_key(|r| {
+        sort_operations.push(value);
+        r.width
+    });
+    println!("{:#?}", rec_list);
+
+
 
 
 }
