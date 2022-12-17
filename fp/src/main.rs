@@ -106,13 +106,15 @@ fn main() {
     rec_list.sort_by_key(|r| r.width);
     println!("{:#?}", rec_list);
 
-    let mut sort_operations = vec![];
+    // let mut sort_operations = vec![];
+    let mut num_sort_operations = 0;
     let value = String::from("by key called");
     rec_list.sort_by_key(|r| {
-        sort_operations.push(value);
+        // sort_operations.push(value);
+        num_sort_operations+= 1;
         r.width
     });
-    println!("{:#?}", rec_list);
+    println!("{:#?}, sorted in {num_sort_operations} operations.", rec_list);
 
 
 
