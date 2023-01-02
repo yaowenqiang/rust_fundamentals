@@ -37,4 +37,10 @@ fn main() {
     let d = MyBox::new(c);
     assert_eq!(5, c);
     assert_eq!(5, *d);
+    let m = MyBox::new(String::from("Rust"));
+    hello(&m);
+}
+
+fn hello(nane: &str) {
+    println!("Hello, {name}!");
 }
