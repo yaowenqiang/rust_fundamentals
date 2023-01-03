@@ -18,6 +18,15 @@ impl<T> Deref for MyBox<T> {
         &self.0
     }
 }
+
+struct CustomSmartPointer {
+    data: String,
+}
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("Dropping CustomSmartPointer with data '{}'", self.data);
+    }
+}
 fn main() {
     let b = Box::new(1);
     println!("b = {}", b);
@@ -38,9 +47,19 @@ fn main() {
     assert_eq!(5, c);
     assert_eq!(5, *d);
     let m = MyBox::new(String::from("Rust"));
-    hello(&m);
+    hello(&m); // equal to the bottom line
+    hello(&(*m)[..]);
+
+    let c = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+    let d = CustomSmartPointer {
+        data: String::from("my other stuff"),
+    };
+
+    println!("CustomSmartPointers created.");
 }
 
-fn hello(nane: &str) {
+fn hello(name: &str) {
     println!("Hello, {name}!");
 }
