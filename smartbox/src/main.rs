@@ -1,5 +1,6 @@
 use crate::List::{Cons, Nil};
 use std::ops::Deref;
+use std::mem::drop;
 #[derive(Debug)]
 enum List{
     Cons(i32, Box<List>),
@@ -57,7 +58,13 @@ fn main() {
         data: String::from("my other stuff"),
     };
 
+
     println!("CustomSmartPointers created.");
+    // c.drop();
+    println!("{}", c.data);
+    drop(c);
+    println!("CustomSmartPointers dropped before the end of main.");
+    // println!("{}", c.data);
 }
 
 fn hello(name: &str) {
