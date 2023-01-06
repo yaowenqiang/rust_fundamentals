@@ -1,3 +1,4 @@
+use std::cell::RefCell;
 use crate::List::{Cons, Nil};
 use std::ops::Deref;
 use std::mem::drop;
@@ -6,6 +7,11 @@ use std::rc::Rc;
 #[derive(Debug)]
 enum List{
     Cons(i32, Rc<List>),
+    Nil,
+}
+
+enum List2{
+    Cons(Rc<RefCell<i32>>, Rc<List2>),
     Nil,
 }
 
@@ -77,6 +83,16 @@ fn main() {
         println!("count after creating c = {}", Rc::strong_count(&list_a));
     }
     println!("count after c goes out of scope = {}", Rc::strong_count(&list_a));
+
+    let value = Rc::new(RefCell::new(5));
+    let list2_a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));
+    let list2_b = Cons(Rc::new(RefCell::new(3), Rc::clone(&list2_a)));
+    let list2_c = Cons(Rc::new(RefCell::new(4), Rc::clone(&list2_a)));
+    *value.borrow_mut() += 10;
+    println!("list2_a after = {:?}", list2_a);
+    println!("list2_b after = {:?}", list2_b);
+    println!("list2_c after = {:?}", list2_c);
+
 }
 
 fn hello(name: &str) {
