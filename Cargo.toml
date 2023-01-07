@@ -12,6 +12,7 @@ members = [
     "fp",
     "minigrep",
     "smartbox",
+    "concurrency",
 ]
 
 [dependencies]
